@@ -1,0 +1,33 @@
+{
+  "altUrl": "",
+  "career": "early",
+  "company": "Superhuman",
+  "concern": "Company profile details the fetch returned (40M+ users, founded 2009) don't match what's publicly known about Superhuman and may be a scrape error — verify the employer and role scope directly. No salary shown.",
+  "deadline": "",
+  "diff": [],
+  "education": "Related field or equivalent practical experience; graduating 2026/2027",
+  "flags": [
+    "cs-soft"
+  ],
+  "lane": "dev",
+  "level": "entry",
+  "location": "Toronto, ON",
+  "mode": "hybrid",
+  "posted": "2026-09-29",
+  "qual": "track",
+  "run": "2026-10-07",
+  "salary": "",
+  "sector": "neutral",
+  "size": "",
+  "stack": [
+    "React",
+    "Node.js",
+    "TypeScript"
+  ],
+  "stackFit": "strong",
+  "title": "Software Engineer, Full-Stack (GPTZero, Early Career)",
+  "url": "https://builtintoronto.com/job/software-engineer-full-stack-agents-cross-fa/11430208",
+  "verified": "partial",
+  "why": "Entry-level React/Node/TypeScript full-stack role explicitly targeting 2026/2027 grads, hybrid Toronto, degree-or-equivalent-experience language.",
+  "years": "Entry (2026/2027 grads)"
+}

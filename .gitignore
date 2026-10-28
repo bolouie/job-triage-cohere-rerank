@@ -1,0 +1,5 @@
+data/
+inbox/
+scores.json
+__pycache__/
+.env
