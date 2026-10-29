@@ -88,3 +88,12 @@ ranked list printed to the terminal.
 - `rerank.py`: builds the documents, calls Rerank, and writes the scores
 - `profile.md`: the query (my candidate profile)
 - `examples/`: four real job records from the search, from a strong match to a clear miss
+
+## Changelog
+
+- **2026-10-28, first run:** original profile. Cohere's Web Developer role ranked #10 of 181.
+- **2026-10-28, profile update:** rewrote `profile.md` to match my current resume
+  (TMU Full Stack certificate, Astro, Supabase, Vitest, user research and usability testing).
+  Removed "Cohere API" from the skills list after testing showed the vendor name lifted
+  Cohere's own postings. Cohere's Web Developer role now ranks #4 of 181. The PolicyMe and
+  Accenture examples held up in both runs.
