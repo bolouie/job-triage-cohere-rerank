@@ -3,3 +3,4 @@ inbox/
 scores.json
 __pycache__/
 .env
+.DS_Store
