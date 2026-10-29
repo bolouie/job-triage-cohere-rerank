@@ -35,25 +35,38 @@ flowchart LR
   deadlines, unverified listings, and hard CS-degree gates.
 
 Why Rerank rather than keyword matching: the old version scored stack fit by hand
-("strong", "partial"). Rerank picks up things those labels missed. For example,
-a "new & recent graduates" full-stack role outranks a senior role with the same
-stack, and a data-analyst posting from an older brief sinks to the bottom.
+("strong", "partial"). Rerank picks up things those labels missed:
 
-## Results from the first run (181 postings)
+- **Same stack, different level.** PolicyMe posted three roles with the same
+  stack (Python, React, Redux, PostgreSQL, AWS). My labels rated all three a
+  "full" stack match. Rerank ranked the Junior role #2, the mid-level role #15,
+  and the Senior role #61.
+- **A label I got wrong.** I rated a Senior Full Stack AI-Native Engineer role
+  a "strong" match because React and TypeScript appear in the posting. Its stack
+  is mostly Java, Spring, Angular and Kubernetes, and Rerank ranked it #148.
+
+Rerank sees each posting's title and the agent's level tag. It weighs them
+together with the stack against the profile; my labels only rated stack.
+
+## Results (181 postings, current profile)
 
 | Rank | Relevance | Role |
 |---:|---:|---|
-| 1 | 0.590 | Software Engineer, Full-Stack (Early Career) · Superhuman |
-| 2 | 0.553 | Full Stack Software Engineer · Atlassian |
-| 3 | 0.552 | Software Engineer, Fullstack · WorkWhile |
-| 5 | 0.531 | Junior Software Engineer (AI-Driven Full Stack) · PolicyMe |
-| 6 | 0.526 | Intern, Full Stack Software Engineer · Capital One |
-| 7 | 0.507 | Full-Stack Software Engineer (New & Recent Graduates) · Wanderlog |
-| 10 | 0.489 | Web Developer · Cohere |
+| 1 | 0.571 | Software Engineer, Full-Stack (Early Career) · Superhuman |
+| 2 | 0.548 | Junior Software Engineer (AI-Driven Full Stack) · PolicyMe |
+| 3 | 0.517 | Full Stack Software Engineer · Atlassian |
+| 4 | 0.503 | Web Developer · Cohere |
+| 5 | 0.494 | Intern, Full Stack Software Engineer · Capital One |
+| 6 | 0.475 | Software Engineer, Fullstack · WorkWhile |
+| 7 | 0.457 | Full-Stack Software Engineer (New & Recent Graduates) · Wanderlog |
 | … | | |
-| 181 | 0.045 | Data analyst roles from an earlier, broader search |
+| 181 | 0.042 | Data analyst roles from an earlier, broader search |
 
-Median relevance was 0.33. The same posting gets the same score on different
+The profile deliberately doesn't name any employer or vendor. An earlier draft
+listed "Cohere API" as a skill, and the word alone lifted Cohere's own postings
+(their Web Developer role went from #4 to #2), so it was removed.
+
+Median relevance was 0.32. The same posting gets the same score on different
 days (Rerank scores each query–document pair on its own), so roles found on
 different days can be compared directly.
 
