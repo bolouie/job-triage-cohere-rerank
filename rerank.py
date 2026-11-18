@@ -28,7 +28,9 @@ MODEL = "rerank-v5.0-pro"
 PROFILE_PATH = pathlib.Path(__file__).with_name("profile.md")
 
 # Fields that describe what the job is. Scheduling and bookkeeping fields
-# (run date, URLs, verification status) are left out so they can't sway relevance.
+# (run date, URLs, verification status) are left out so they can't sway relevance,
+# and so are the agent's caveats: rules already score those, and in testing they
+# dragged a referral role from #25 to #70 by restating what the posting lacked.
 DOC_FIELDS = [
     ("title", "Title"),
     ("company", "Company"),
@@ -41,7 +43,6 @@ DOC_FIELDS = [
     ("education", "Education"),
     ("sector", "Sector"),
     ("why", "Summary"),
-    ("concern", "Caveats"),
     ("posting", "Posting text"),  # full posting text, when the agent saved it
 ]
 

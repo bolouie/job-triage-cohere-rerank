@@ -24,9 +24,9 @@ flowchart LR
   React/TypeScript/Python, accessibility, data visualization, my degrees, and
   sector preferences.
 - **Documents:** each job record rendered as YAML-style text (title, company,
-  level, stack, education requirement, the agent's summary and caveats, and the
-  posting text when available). Bookkeeping fields like URLs and run dates are
-  left out so they can't affect relevance.
+  level, stack, education requirement, the agent's summary, and the posting text
+  when available). Bookkeeping fields like URLs and run dates are left out so they
+  can't affect relevance, and so are the agent's caveats (see the changelog).
 - **One request per run.** Rerank accepts up to 1,000 documents per call, so the
   whole day's batch goes in a single `POST /v2/rerank`.
 - **Scores feed the dashboard.** Relevance maps to up to 35 of 100 points:
@@ -98,3 +98,13 @@ ranked list printed to the terminal.
   Removed "Cohere API" from the skills list after testing showed the vendor name lifted
   Cohere's own postings. Cohere's Web Developer role now ranks #4 of 181. The PolicyMe and
   Accenture examples held up in both runs.
+- **2026-11-17, caveats dropped from documents:** a referral role (Thoughtworks Associate
+  Graduate Developer) ranked #70 of 236. Testing showed the agent's "Caveats" field was
+  restating what the posting lacked ("no React/TypeScript mentioned"), so the missing stack
+  counted against it twice. Without caveats it ranks #36; rules on the dashboard still score
+  those concerns. Rescored all 236 postings: Cohere's Web Developer role stays #4; PolicyMe
+  junior/mid/senior are #3/#24/#145; the Accenture senior role is #194. The dashboard now
+  also pins referral roles to the top and shows developer roles only.
+- **2026-11-17, key loading:** scheduled runs use a shell that doesn't read `~/.zshrc`, so
+  the key was never found and scoring was skipped for weeks. `rerank.py` now falls back to
+  a gitignored `.env`.
