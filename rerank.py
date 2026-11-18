@@ -58,9 +58,26 @@ def to_document(job):
     return "\n".join(lines)
 
 
+def load_api_key():
+    """COHERE_API_KEY from the environment, else from a gitignored .env next to this script.
+
+    Scheduled runs use a non-interactive shell that doesn't read ~/.zshrc, so the file fallback matters.
+    """
+    key = os.environ.get("COHERE_API_KEY")
+    env_path = pathlib.Path(__file__).with_name(".env")
+    if not key and env_path.exists():
+        for line in env_path.read_text().splitlines():
+            name, _, value = line.removeprefix("export ").partition("=")
+            if name.strip() == "COHERE_API_KEY":
+                key = value.strip().strip("\"'")
+    return key
+
+
 def load_jobs(folder):
     jobs = []
     for path in sorted(pathlib.Path(folder).glob("*.json")):
+        if path.name.startswith("_"):  # scratch files, not job records
+            continue
         data = json.loads(path.read_text())
         jobs.append((path.stem, data.get("data", data)))
     return jobs
@@ -87,9 +104,9 @@ def main():
     ap.add_argument("--top", type=int, default=10, help="how many to print")
     args = ap.parse_args()
 
-    api_key = os.environ.get("COHERE_API_KEY")
+    api_key = load_api_key()
     if not api_key:
-        sys.exit("Set COHERE_API_KEY first.")
+        sys.exit("Set COHERE_API_KEY, or put COHERE_API_KEY=... in .env next to this script.")
 
     jobs = load_jobs(args.folder)
     if not jobs:

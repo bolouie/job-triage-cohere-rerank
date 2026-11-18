@@ -76,6 +76,7 @@ Requires Python 3.9+ and nothing else. It calls the REST API with the standard l
 
 ```bash
 export COHERE_API_KEY=...        # free trial key from dashboard.cohere.com
+                                 # (or COHERE_API_KEY=... in a gitignored .env next to rerank.py)
 python3 rerank.py examples       # 4 sample postings
 python3 rerank.py path/to/jobs --out scores.json --top 15
 ```
